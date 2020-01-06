@@ -19,8 +19,6 @@ words = word_tokenize(text.lower())
 
 stopwords = set(stopwords.words('portuguese') + list(punctuation) + ["...", "--"])
 
-print(stopwords)
-
 frequency = FreqDist([word for word in words if word not in stopwords])
 
 print(frequency.most_common(1000))
@@ -30,8 +28,9 @@ wc = WordCloud(background_color='white',
                 relative_scaling=0.5, colormap='viridis', 
                 normalize_plurals=False).generate_from_frequencies(frequency)
 
-plt.imshow(wc)
+plt.imshow(wc, interpolation="bilinear")
 plt.axis('off')
+plt.margins(x=0, y=0)
 #plt.title('Test title', size='xx-small')
 #plt.suptitle('Test subtitle', horizontalalignment='center', weight='bold')
 #plt.figtext(0.5, 0.05, 'asdad', size='x-small', horizontalalignment='center')
